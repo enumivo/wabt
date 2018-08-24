@@ -618,7 +618,7 @@ class Thread {
   Result SimdBinop(BinopFunc<R, P> func) WABT_WARN_UNUSED;
 
   Environment* env_ = nullptr;
-  std::vector<Value> value_stack_;
+  static std::vector<Value> value_stack_;
   std::vector<IstreamOffset> call_stack_;
   uint32_t value_stack_top_ = 0;
   uint32_t call_stack_top_ = 0;

@@ -31,6 +31,8 @@ namespace wabt {
 namespace interp {
 
 std::vector<char> Memory::data;
+std::vector<Value> Thread::value_stack_;
+
 // Differs from the normal CHECK_RESULT because this one is meant to return the
 // interp Result type.
 #undef CHECK_RESULT
@@ -155,8 +157,10 @@ Thread::Options::Options(uint32_t value_stack_size, uint32_t call_stack_size)
 
 Thread::Thread(Environment* env, const Options& options)
     : env_(env),
-      value_stack_(options.value_stack_size),
-      call_stack_(options.call_stack_size) {}
+      call_stack_(options.call_stack_size) {
+         if(value_stack_.size() == 0)
+            value_stack_.resize(options.value_stack_size);
+}
 
 FuncSignature::FuncSignature(std::vector<Type> param_types,
                              std::vector<Type> result_types)
