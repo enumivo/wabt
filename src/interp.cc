@@ -710,7 +710,7 @@ template<> v128 GetValue<v128>(Value v) { return v.v128_bits; }
   } while (0)
 
 #define CHECK_STACK() \
-  TRAP_IF(value_stack_top_ >= value_stack_.size(), ValueStackExhausted)
+  if(value_stack_top_ >= value_stack_.size()) value_stack_.resize(value_stack_.size()*2)
 
 #define PUSH_NEG_1_AND_BREAK_IF(cond) \
   if (WABT_UNLIKELY(cond)) {          \
