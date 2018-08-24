@@ -30,6 +30,7 @@
 namespace wabt {
 namespace interp {
 
+std::vector<char> Memory::data;
 // Differs from the normal CHECK_RESULT because this one is meant to return the
 // interp Result type.
 #undef CHECK_RESULT

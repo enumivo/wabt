@@ -118,10 +118,13 @@ struct Table {
 struct Memory {
   Memory() = default;
   explicit Memory(const Limits& limits)
-      : page_limits(limits), data(limits.initial * WABT_PAGE_SIZE) {}
+      : page_limits(limits) {
+         data.resize(limits.initial * WABT_PAGE_SIZE);
+         memset(data.data(), 0, data.size());
+      }
 
   Limits page_limits;
-  std::vector<char> data;
+  static std::vector<char> data;
 };
 
 // ValueTypeRep converts from one type to its representation on the
