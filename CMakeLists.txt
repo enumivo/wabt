@@ -289,46 +289,46 @@ if (NOT EMSCRIPTEN)
     )
   endfunction()
 
-  if (BUILD_TOOLS)
-    # wat2wasm
-    wabt_executable(wat2wasm src/tools/wat2wasm.cc)
+  #if (BUILD_TOOLS)
+  #  # wat2wasm
+  #  wabt_executable(wat2wasm src/tools/wat2wasm.cc)
 
-    # wast2json
-    wabt_executable(wast2json src/tools/wast2json.cc)
+  #  # wast2json
+  #  wabt_executable(wast2json src/tools/wast2json.cc)
 
-    # wasm2wat
-    wabt_executable(wasm2wat src/tools/wasm2wat.cc)
+  #  # wasm2wat
+  #  wabt_executable(wasm2wat src/tools/wasm2wat.cc)
 
-    # wasm2c
-    wabt_executable(wasm2c
-      src/tools/wasm2c.cc src/c-writer.cc)
+  #  # wasm2c
+  #  wabt_executable(wasm2c
+  #    src/tools/wasm2c.cc src/c-writer.cc)
 
-    # wasm-opcodecnt
-    wabt_executable(wasm-opcodecnt
-      src/tools/wasm-opcodecnt.cc src/binary-reader-opcnt.cc)
+  #  # wasm-opcodecnt
+  #  wabt_executable(wasm-opcodecnt
+  #    src/tools/wasm-opcodecnt.cc src/binary-reader-opcnt.cc)
 
-    # wasm-objdump
-    wabt_executable(wasm-objdump
-      src/tools/wasm-objdump.cc src/binary-reader-objdump.cc)
+  #  # wasm-objdump
+  #  wabt_executable(wasm-objdump
+  #    src/tools/wasm-objdump.cc src/binary-reader-objdump.cc)
 
-    # wasm-interp
-    wabt_executable(wasm-interp src/tools/wasm-interp.cc)
-    if (COMPILER_IS_CLANG OR COMPILER_IS_GNU)
-      target_link_libraries(wasm-interp m)
-    endif ()
+  #  # wasm-interp
+  #  wabt_executable(wasm-interp src/tools/wasm-interp.cc)
+  #  if (COMPILER_IS_CLANG OR COMPILER_IS_GNU)
+  #    target_link_libraries(wasm-interp m)
+  #  endif ()
 
-    # spectest-interp
-    wabt_executable(spectest-interp src/tools/spectest-interp.cc)
-    if (COMPILER_IS_CLANG OR COMPILER_IS_GNU)
-      target_link_libraries(spectest-interp m)
-    endif ()
+  #  # spectest-interp
+  #  wabt_executable(spectest-interp src/tools/spectest-interp.cc)
+  #  if (COMPILER_IS_CLANG OR COMPILER_IS_GNU)
+  #    target_link_libraries(spectest-interp m)
+  #  endif ()
 
-    # wat-desugar
-    wabt_executable(wat-desugar src/tools/wat-desugar.cc)
+  #  # wat-desugar
+  #  wabt_executable(wat-desugar src/tools/wat-desugar.cc)
 
-    # wasm-validate
-    wabt_executable(wasm-validate src/tools/wasm-validate.cc)
-  endif ()
+  #  # wasm-validate
+  #  wabt_executable(wasm-validate src/tools/wasm-validate.cc)
+  #endif ()
 
   find_package(Threads)
   if (BUILD_TESTS)
