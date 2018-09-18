@@ -767,17 +767,8 @@ inline v128 ReadV128(const uint8_t** pc) {
 }
 
 inline Opcode ReadOpcode(const uint8_t** pc) {
-  uint8_t value = ReadU8(pc);
-  if (Opcode::IsPrefixByte(value)) {
-    // For now, assume all instructions are encoded with just one extra byte
-    // so we don't have to decode LEB128 here.
-    uint32_t code = ReadU8(pc);
-    return Opcode::FromCode(value, code);
-  } else {
-    // TODO(binji): Optimize if needed; Opcode::FromCode does a log2(n) lookup
-    // from the encoding.
-    return Opcode::FromCode(value);
-  }
+  uint32_t value = ReadU32(pc);
+  return Opcode(static_cast<Opcode::Enum>(value));
 }
 
 inline void read_table_entry_at(const uint8_t* pc,
@@ -865,8 +856,9 @@ ValueTypeRep<T> Thread::PopRep() {
 }
 
 void Thread::DropKeep(uint32_t drop_count, uint32_t keep_count) {
-  for (uint32_t i = 0; i < keep_count; ++i) {
-    Pick(drop_count + i + 1) = Pick(i + 1);
+  // Copy backward to avoid clobbering when the regions overlap.
+  for (uint32_t i = keep_count; i > 0; --i) {
+    Pick(drop_count + i) = Pick(i);
   }
   value_stack_top_ -= drop_count;
 }
