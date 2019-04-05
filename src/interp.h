@@ -14,12 +14,6 @@
  * limitations under the License.
  */
 
-/*
- *
- * This file has been modified by block.one
- *
- */
-
 #ifndef WABT_INTERP_H_
 #define WABT_INTERP_H_
 

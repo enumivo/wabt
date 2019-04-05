@@ -14,12 +14,6 @@
 # limitations under the License.
 #
 
-#
-#
-# This file has been modified by block.one
-#
-#
-
 cmake_minimum_required(VERSION 2.6)
 project(WABT)
 
